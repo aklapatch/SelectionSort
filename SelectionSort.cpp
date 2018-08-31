@@ -1,4 +1,8 @@
 #include <iostream>
+#include <ctime>
+#include <string>
+#include <cctype>
+#include <cstdlib>
 
 // swaps data member at specified indices
 void swap(int * t_data, int t_i, int t_j){
@@ -18,6 +22,25 @@ void printArray(int * t_data, int t_size){
 		std::cout << "Member " << i << " = " << t_data[i] << "\n";
 	}
 	std::cout << "\n";
+}
+
+// gets arraysize from user
+int getInput(){
+
+	std::string input = "a";
+
+	// get input from user
+	while( isdigit(input[0]) == 0 && input.find(".") == std::string::npos){
+		std::cout << "Please input a integer (100 or less) for the array size and press enter.\n";
+		std::cin >> input;
+
+		if( atoi(input.c_str()) > 100){
+			continue;
+		}
+	}
+
+	// return int form of input
+	return atoi(input.c_str());
 }
 
 //selection sort
@@ -46,22 +69,44 @@ void selectionSort(int * t_data, int t_size){
 	}
 }
 
+void fillWRandom(int * t_data, int t_size){
+
+	// seed random number generator
+	srand(time(NULL));
+
+	// copy random numbers to the array
+	while(t_size--){
+		t_data[t_size] = rand()%100;
+	}
+}
+
 int main(){
 
-	// data to be sorted
-	int data[] = { 4, 2, 1, 67, 342, 63, 32, 34, 5, 23, 15};
-	int size = 11;
+	try {
 
-	// print out data before
-	std::cout << "Data before.\n";
-	printArray(data, size);
-	
-	// sort array
-	selectionSort(data, size);
+		// get input and make array
+		int size = getInput();
+		int * data = new int[size];
 
-	// print out data after
-	std::cout << "Data after.\n";
-	printArray(data, size);
+		// get random numbers
+		fillWRandom(data,size);
+
+		// print out data before
+		std::cout << "Data before.\n";
+		printArray(data, size);
+		
+		// sort array
+		selectionSort(data, size);
+
+		// print out data after
+		std::cout << "Data after.\n";
+		printArray(data, size);
+
+	// in case of allocation failure
+	} catch (const std::bad_alloc& e) {
+
+		std::cerr << "Allocation failed! Exception: " << e.what() << "\n";
+	}
 
 	return 0;
 }
