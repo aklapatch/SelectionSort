@@ -44,7 +44,7 @@ int getInput(){
 }
 
 //selection sort
-void selectionSort(int * t_data, int t_size){
+void SelectionSort(int * t_data, int t_size){
 
 	int index = 0;
 
@@ -96,7 +96,7 @@ int main(){
 		printArray(data, size);
 		
 		// sort array
-		selectionSort(data, size);
+		SelectionSort(data, size);
 
 		// print out data after
 		std::cout << "Data after.\n";
