@@ -28,13 +28,23 @@ void printArray(int * t_data, int t_size){
 int getInput(){
 
 	std::string input = "a";
+	int times = 0;
 
 	// get input from user
 	while( isdigit(input[0]) == 0 && input.find(".") == std::string::npos){
 		std::cout << "Please input a integer (100 or less) for the array size and press enter.\n";
 		std::cin >> input;
+		
+		// quit if user enters wrong input too many times
+		++times;
+		if(times >= 3){
+			std::cout << "Exiting.\n";
+			exit(1);
+		}
 
+		// go back to the beginning if the number is too big
 		if( atoi(input.c_str()) > 100){
+			std::cout << "100 or less please.\n";
 			continue;
 		}
 	}
