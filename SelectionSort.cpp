@@ -56,13 +56,11 @@ int getInput(){
 //selection sort
 void SelectionSort(int * t_data, int t_size){
 
-	int index = 0;
-
 	// go through whole array
-	for(int i = 0; i < t_size; ++i){
+	for(int i = 0; i < t_size - 1; ++i){
 
 		// store current index
-		index = i;
+		int index = i;
 
 		// find index with smallest number
 		for(int j = i + 1; j < t_size; ++j){
@@ -111,6 +109,8 @@ int main(){
 		// print out data after
 		std::cout << "Data after.\n";
 		printArray(data, size);
+
+		delete [] data;
 
 	// in case of allocation failure
 	} catch (const std::bad_alloc& e) {
