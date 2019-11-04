@@ -1,6 +1,6 @@
 A License for my old schoolwork (based on the clear BSD License)
 
-Copyright (c) [year] [Copyright holder]
+Copyright (c) 2019 Aaron Klapatch
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
